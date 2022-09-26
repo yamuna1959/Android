@@ -1,0 +1,159 @@
+activity_main.xml
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the first num"
+        android:inputType="number"
+        android:id="@+id/fno"
+        android:layout_margin="10dp"
+        android:textColor="@color/black" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the second num"
+        android:inputType="number"
+        android:id="@+id/sno"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+"
+        android:id="@+id/add"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:background="@color/cardview_light_background"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:id="@+id/sub"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:background="@color/cardview_light_background"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:id="@+id/div"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:background="@color/cardview_light_background"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*"
+        android:id="@+id/mul"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:background="@color/cardview_light_background"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="clear"
+        android:id="@+id/clear"
+        android:layout_margin="10dp"
+        android:textColor="@color/black"
+        android:background="@color/cardview_light_background"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="result"
+        android:id="@+id/res"
+        android:textColor="@color/black"/>
+
+
+
+</LinearLayout>
+
+
+MainActivity.java
+
+package com.example.calculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+
+public class MainActivity extends AppCompatActivity {
+    EditText e1,e2,e3;
+    AppCompatButton b1,b2,b3,b4,b5;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e1 = (EditText)findViewById(R.id.fno);
+        e2 = (EditText)findViewById(R.id.sno);
+        e3 = (EditText)findViewById(R.id.res);
+        b1 = (AppCompatButton) findViewById(R.id.add);
+        b2 = (AppCompatButton) findViewById(R.id.sub);
+        b3 = (AppCompatButton) findViewById(R.id.div);
+        b4 = (AppCompatButton) findViewById(R.id.mul);
+        b5 = (AppCompatButton) findViewById(R.id.clear);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (e1.getText().length() > 0 && (e2.getText().length() > 0)) {
+                    int first = Integer.parseInt(e1.getText().toString());
+                    int second = Integer.parseInt(e2.getText().toString());
+                    int result = first + second;
+                    e3.setText(Integer.toString(result));
+                }
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (e1.getText().length() > 0 && (e2.getText().length() > 0)) {
+                    double first = Double.parseDouble(e1.getText().toString());
+                    double second = Double.parseDouble(e2.getText().toString());
+                    double result = first - second;
+                    e3.setText(Double.toString(result));
+                }
+            }
+        });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (e1.getText().length() > 0 && (e2.getText().length() > 0)) {
+                    double first = Double.parseDouble(e1.getText().toString());
+                    double second = Double.parseDouble(e2.getText().toString());
+                    double result = first / second;
+                    e3.setText(Double.toString(result));
+                }
+            }
+        });
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (e1.getText().length() > 0 && (e2.getText().length() > 0)) {
+                    double first = Double.parseDouble(e1.getText().toString());
+                    double second = Double.parseDouble(e2.getText().toString());
+                    double result = first * second;
+                    e3.setText(Double.toString(result));
+                }
+            }
+        });
+        b5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                e1.setText(" ");
+                e2.setText(" ");
+                e3.setText(" ");
+            }
+        });
+
+    }
+}
