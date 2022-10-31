@@ -1,0 +1,266 @@
+activity_main.xml
+
+
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the stud ID"
+        android:id="@+id/studid"
+        android:textColor="@color/black"
+        android:layout_margin="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Password"
+        android:id="@+id/pass"
+        android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:layout_margin="20dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="@color/design_default_color_secondary"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/login"
+        android:text="LOGIN" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="@color/design_default_color_secondary"
+        android:layout_margin="20dp"
+        android:layout_gravity="center"
+        android:id="@+id/reg"
+        android:text="Go To Register" />
+
+</LinearLayout>
+
+
+
+
+activity_stud_main2.xml
+
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Admission No.:"
+            android:id="@+id/adno"
+            android:inputType="number"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Roll No.:"
+            android:id="@+id/rono"
+            android:inputType="number"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Highest Degree:"
+            android:id="@+id/deg"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter College:"
+            android:id="@+id/co"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Id:"
+            android:id="@+id/id"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Password:"
+            android:id="@+id/password"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Conform Password:"
+            android:id="@+id/conpass"
+            android:inputType="textPassword"
+            android:layout_margin="10dp"
+            android:textColor="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="REGISTER"
+            android:background="@color/design_default_color_secondary"
+            android:layout_margin="10dp"
+            android:id="@+id/reg" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Back To Login"
+            android:background="@color/design_default_color_secondary"
+            android:layout_margin="10dp"
+            android:id="@+id/blog" />
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+MainActivity.java
+
+
+
+package com.example.student;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity
+{
+    EditText ed1,ed2;
+    AppCompatButton b1,b2;
+    String getStudId,getPass;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ed1=(EditText) findViewById(R.id.studid);
+        ed2=(EditText) findViewById(R.id.pass);
+        b1=(AppCompatButton) findViewById(R.id.login);
+        b2=(AppCompatButton) findViewById(R.id.reg);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                getStudId=ed1.getText().toString();
+                getPass=ed2.getText().toString();
+                Toast.makeText(getApplicationContext(),getStudId,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getPass,Toast.LENGTH_SHORT).show();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i=new Intent(getApplicationContext(),StudMainActivity2.class);
+                startActivity(i);
+            }
+        });
+    }
+}
+
+
+
+StudMainActivity2.java
+
+
+
+package com.example.student;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class StudMainActivity2 extends AppCompatActivity
+{
+    EditText ed1,ed2,ed3,ed4,ed5,ed6,ed7;
+    AppCompatButton b1,b2;
+    String getAdd,getRoll,getDegree,getCollege,getId,getPass,getConform;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_stud_main2);
+        ed1=(EditText) findViewById(R.id.adno);
+        ed2=(EditText) findViewById(R.id.rono);
+        ed3=(EditText) findViewById(R.id.deg);
+        ed4=(EditText) findViewById(R.id.co);
+        ed5=(EditText) findViewById(R.id.id);
+        ed6=(EditText) findViewById(R.id.password);
+        ed7=(EditText) findViewById(R.id.conpass);
+        b1=(AppCompatButton) findViewById(R.id.reg);
+        b2=(AppCompatButton) findViewById(R.id.blog);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                getAdd=ed1.getText().toString();
+                getRoll=ed2.getText().toString();
+                getDegree=ed3.getText().toString();
+                getCollege=ed4.getText().toString();
+                getId=ed5.getText().toString();
+                getPass=ed6.getText().toString();
+                getConform=ed7.getText().toString();
+                Toast.makeText(getApplicationContext(),getAdd,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getRoll,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getDegree,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getCollege,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getId,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getConform,Toast.LENGTH_SHORT).show();
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent i=new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+            }
+        });
+    }
+}
