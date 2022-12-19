@@ -1,0 +1,73 @@
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Alert"
+        android:id="@+id/getBtn"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="200dp" />
+
+</RelativeLayout>
+
+
+
+MainActivity.java
+
+
+package com.example.alertbox;
+
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity
+{
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button btn=(Button) findViewById(R.id.getBtn);
+        btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Login Alert").setMessage("Are you sure, you want to continue ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        Toast.makeText(MainActivity.this,"Selected Option: YES",Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("No",new DialogInterface.OnClickListener()
+                {
+                    @Override
+                            public void onClick(DialogInterface dialog, int which)
+                    {
+                        Toast.makeText(MainActivity.this,"Selected Option: No",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                AlertDialog dialog=builder.create();
+                dialog.show();
+            }
+        });
+    }
+}
