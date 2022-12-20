@@ -1,0 +1,77 @@
+Find Sum of Two Numbers and Display the Value on Toast
+
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entry1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entry2" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:text="Add" />
+
+</LinearLayout>
+
+
+
+
+MainActivity.java
+
+
+package com.example.sum2no;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity
+{
+    private EditText value1, value2;
+    private Button sum;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        addListenerOnButton();
+    }
+    public void addListenerOnButton()
+    {
+        value1=(EditText) findViewById(R.id.entry1);
+        value2=(EditText) findViewById(R.id.entry2);
+        sum=(Button) findViewById(R.id.button);
+        sum.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                String e1=value1.getText().toString();
+                String e2=value2.getText().toString();
+                int a=Integer.parseInt(e1);
+                int b=Integer.parseInt(e2);
+                int sum=a+b;
+                Toast.makeText(getApplicationContext(),String.valueOf(sum),Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
