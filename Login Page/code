@@ -1,0 +1,73 @@
+Question : Create a Login Page with Username and Password and Toast the Values.
+
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android">
+<EditText
+    android:layout_width="match_parent"
+    android:textColor="@color/black"
+    android:layout_height="wrap_content"
+    android:hint="Enter user name"
+    android:layout_margin="10dp"
+    android:id="@+id/usr"/>
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter password"
+    android:inputType="textPassword"
+    android:textColor="@color/black"
+    android:id="@+id/pass"
+    android:layout_margin="10dp"/>
+<androidx.appcompat.widget.AppCompatButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/btn"
+    android:layout_margin="10dp"
+    android:text="SUBMIT"
+    android:textColor="@color/black"/>
+</LinearLayout>
+
+MainActivity.java
+
+
+package com.example.lp;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity
+{
+    EditText ed1,ed2;
+    AppCompatButton b1;
+    String getUser,getPass;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ed1=(EditText) findViewById(R.id.usr);
+        ed2=(EditText) findViewById(R.id.pass);
+        b1=(AppCompatButton) findViewById(R.id.btn);
+        b1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                getUser=ed1.getText().toString();
+                getPass=ed2.getText().toString();
+                Toast.makeText(getApplicationContext(),getUser,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getPass,Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+}
